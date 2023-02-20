@@ -7,12 +7,12 @@
 
 import UIKit
 
-public protocol ViewTravelAnimationDelegate: AnyObject {
+public protocol ViewDraggerDelegate: AnyObject {
     func travelAnimationDidStartWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState)
     
     func travelAnimationDidCancelWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState)
     
-    func travelAnimationDidCompleteWith(travelAnimation: ViewDragger, iew: UIView, travelState: ViewDragger.TravelState)
+    func travelAnimationDidCompleteWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState)
 }
 
 public class ViewDragger {
@@ -39,12 +39,18 @@ public class ViewDragger {
     /// The value is between 0-1.
     public var tranlationTriggerPercentNum = CGFloat(0.166666)
     
-    public weak var delegate: ViewTravelAnimationDelegate?
+    public weak var delegate: ViewDraggerDelegate?
     
     /// Manually triggered animations.
-    public func travel(to travelState: TravelState) {
+    public func travel(to travelState: TravelState, animated: Bool = true) {
         prepareAnimatorFor(travelState)
-        animator.startAnimation()
+        if animated {
+            animator.startAnimation()
+        } else {
+            animator.fractionComplete = 1
+            animator.stopAnimation(false)
+            animator.finishAnimation(at: .end)
+        }
     }
     
     public func update(backwardsViewFrame: CGRect? = nil,
@@ -217,7 +223,7 @@ public class ViewDragger {
             else { return }
             switch position {
             case .end:
-                self.delegate?.travelAnimationDidCompleteWith(travelAnimation: self, iew: v, travelState: travelState)
+                self.delegate?.travelAnimationDidCompleteWith(travelAnimation: self, view: v, travelState: travelState)
                 switch travelState {
                 case .backwards:
                     f.addSubview(v)
