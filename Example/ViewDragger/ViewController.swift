@@ -90,11 +90,11 @@ class ViewController: UIViewController {
         exampleView_0.moveableContent.tag = 0
         exampleView_0.animateButton.addTarget(self, action: #selector(onClickExpandBtn), for: .touchUpInside)
         dragger_0 = ViewDragger(animationView: exampleView_0.moveableContent,
-                                    backwardsSuperView: exampleView_0,
-                                    forwardSuperView: view.window!,
-                                    backwardsViewFrame: frameInExampleContainer,
-                                    forwardsViewFrame: view.window!.bounds,
-                                    gestureAxis: .horizontal)
+                                backwardsSuperView: exampleView_0,
+                                forwardSuperView: view.window!,
+                                backwardsViewFrame: frameInExampleContainer,
+                                forwardsViewFrame: view.window!.bounds,
+                                gestureAxis: .horizontal)
         dragger_0.delegate = self
         
         exampleView_1.descriptionLabel.text = "Vertical Window Drag"
@@ -102,11 +102,11 @@ class ViewController: UIViewController {
         exampleView_1.moveableContent.tag = 1
         exampleView_1.animateButton.addTarget(self, action: #selector(onClickExpandBtn), for: .touchUpInside)
         dragger_1 = ViewDragger(animationView: exampleView_1.moveableContent,
-                                    backwardsSuperView: exampleView_1,
-                                    forwardSuperView: view.window!,
-                                    backwardsViewFrame: frameInExampleContainer,
-                                    forwardsViewFrame: view.window!.bounds,
-                                    gestureAxis: .vertical)
+                                backwardsSuperView: exampleView_1,
+                                forwardSuperView: view.window!,
+                                backwardsViewFrame: frameInExampleContainer,
+                                forwardsViewFrame: view.window!.bounds,
+                                gestureAxis: .vertical)
         dragger_1.delegate = self
     }
     
