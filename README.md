@@ -1,6 +1,5 @@
 # ViewDragger
 
-[![CI Status](https://img.shields.io/travis/xuyunshi/ViewDragger.svg?style=flat)](https://travis-ci.org/xuyunshi/ViewDragger)
 [![Version](https://img.shields.io/cocoapods/v/ViewDragger.svg?style=flat)](https://cocoapods.org/pods/ViewDragger)
 [![License](https://img.shields.io/cocoapods/l/ViewDragger.svg?style=flat)](https://cocoapods.org/pods/ViewDragger)
 [![Platform](https://img.shields.io/cocoapods/p/ViewDragger.svg?style=flat)](https://cocoapods.org/pods/ViewDragger)
@@ -22,7 +21,7 @@ pod 'ViewDragger'
 
 ## Author
 
-xuyunshi, 405029644@qq.com
+vince, zjxuyunshi@gmail.com
 
 ## License
 

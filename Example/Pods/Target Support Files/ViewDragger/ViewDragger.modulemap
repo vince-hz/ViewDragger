@@ -1,0 +1,6 @@
+framework module ViewDragger {
+  umbrella header "ViewDragger-umbrella.h"
+
+  export *
+  module * { export * }
+}
