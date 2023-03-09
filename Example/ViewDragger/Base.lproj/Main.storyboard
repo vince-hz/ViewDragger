@@ -21,14 +21,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="E6m-qP-ofG">
-                                <rect key="frame" x="14" y="44" width="347" height="144"/>
+                                <rect key="frame" x="14" y="44" width="125" height="144"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39s-gD-W5p" customClass="ExampleContainer" customModule="ViewDragger_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="144"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fgc-XO-PgN" customClass="ExampleContainer" customModule="ViewDragger_Example" customModuleProvider="target">
-                                        <rect key="frame" x="175.5" y="0.0" width="171.5" height="144"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="144"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -36,17 +32,56 @@
                                     <constraint firstAttribute="height" constant="144" id="e8v-wC-SmF"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="uvl-hG-Q9j">
+                                <rect key="frame" x="73" y="502" width="229" height="121"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rzB-wu-PBb">
+                                        <rect key="frame" x="0.0" y="0.0" width="229" height="32"/>
+                                        <segments>
+                                            <segment title="TwoViewDrag"/>
+                                            <segment title="FreeDrag"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentUpdated:" destination="vXZ-lx-hvc" eventType="valueChanged" id="wCP-XY-9Xr"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yPy-OI-za5">
+                                        <rect key="frame" x="0.0" y="45" width="229" height="32"/>
+                                        <segments>
+                                            <segment title="Vertical"/>
+                                            <segment title="Horizontal"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentUpdated:" destination="vXZ-lx-hvc" eventType="valueChanged" id="Fhx-yV-VD0"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="3L1-a6-YX0">
+                                        <rect key="frame" x="0.0" y="90" width="229" height="32"/>
+                                        <segments>
+                                            <segment title="Using Frame"/>
+                                            <segment title="Using Tranform"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentUpdated:" destination="vXZ-lx-hvc" eventType="valueChanged" id="wji-Ra-dK6"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="E6m-qP-ofG" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="44" id="Fgb-Xb-Sgm"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uvl-hG-Q9j" secondAttribute="bottom" constant="44" id="N0B-lw-Vnh"/>
+                            <constraint firstItem="E6m-qP-ofG" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.333" id="TTE-KJ-Hmu"/>
+                            <constraint firstItem="uvl-hG-Q9j" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="hl5-XN-6Si"/>
                             <constraint firstItem="E6m-qP-ofG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="14" id="tGv-Yq-DVr"/>
-                            <constraint firstAttribute="trailing" secondItem="E6m-qP-ofG" secondAttribute="trailing" constant="14" id="uCi-ig-UYU"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="exampleView_0" destination="39s-gD-W5p" id="Z6z-bP-0Zl"/>
-                        <outlet property="exampleView_1" destination="Fgc-XO-PgN" id="W3N-6X-Isp"/>
+                        <outlet property="animationTypeSegmentControl" destination="3L1-a6-YX0" id="jUU-Fm-55U"/>
+                        <outlet property="dragSyleSegmentControl" destination="rzB-wu-PBb" id="JOk-xJ-UPG"/>
+                        <outlet property="exampleView" destination="39s-gD-W5p" id="4Jt-w8-qad"/>
+                        <outlet property="gestureAxisSegmentControl" destination="yPy-OI-za5" id="3oS-3w-q3F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

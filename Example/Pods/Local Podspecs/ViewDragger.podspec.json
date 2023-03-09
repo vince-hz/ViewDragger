@@ -1,6 +1,6 @@
 {
   "name": "ViewDragger",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "summary": "A tiny tool to provide draggable function to any UIView.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/vince-hz/ViewDragger",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/vince-hz/ViewDragger.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "10.0"

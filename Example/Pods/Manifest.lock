@@ -1,5 +1,5 @@
 PODS:
-  - ViewDragger (0.1.0)
+  - ViewDragger (1.0.0)
 
 DEPENDENCIES:
   - ViewDragger (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ViewDragger: d2d2c57fa96b47bd75651ae8894933e33ba51ee2
+  ViewDragger: f3e22f4d6583da71d35077ea49bc52bef58b3191
 
 PODFILE CHECKSUM: 6ba3868627be68740aea7e10d82461c4aee66aff
 

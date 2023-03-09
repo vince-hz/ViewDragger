@@ -44,6 +44,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6CBBA1B83651CA3BD5B22F11 /* ViewDragger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ViewDragger.podspec; path = ../ViewDragger.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8A6021E129B9D3FE009D499C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		B6F6A4AC7F5728EB9CD250B0 /* Pods-ViewDragger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewDragger_Tests.release.xcconfig"; path = "Target Support Files/Pods-ViewDragger_Tests/Pods-ViewDragger_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B9012CCF2B7C3424BFCD8875 /* Pods_ViewDragger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViewDragger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CE3EFD9AA4CEE29FACEC49 /* Pods-ViewDragger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewDragger_Example.release.xcconfig"; path = "Target Support Files/Pods-ViewDragger_Example/Pods-ViewDragger_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				6CBBA1B83651CA3BD5B22F11 /* ViewDragger.podspec */,
+				8A6021E129B9D3FE009D499C /* CHANGELOG.md */,
 				5A239FFAD0DD466E1A72E9AE /* README.md */,
 				1BE5A4A61ED0E86C397378E4 /* LICENSE */,
 			);
@@ -496,7 +498,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -520,7 +522,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

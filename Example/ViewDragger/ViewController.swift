@@ -61,6 +61,12 @@ class ExampleContainer: UIView {
 }
 
 class ViewController: UIViewController {
+    @IBOutlet var gestureAxisSegmentControl: UISegmentedControl!
+    @IBOutlet var animationTypeSegmentControl: UISegmentedControl!
+    @IBOutlet var dragSyleSegmentControl: UISegmentedControl!
+    @IBOutlet var exampleView: ExampleContainer!
+    var dragger: ViewDragger!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -68,105 +74,93 @@ class ViewController: UIViewController {
         }
     }
     
+    var oldBound = CGRect.zero
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if view.window != nil {
+        
+        if view.bounds != oldBound {
+            oldBound = view.bounds
             DispatchQueue.main.async {
-                self.dragger_0.update(forwardsViewFrame: self.view.window!.bounds)
-                self.dragger_1.update(forwardsViewFrame: self.view.window!.bounds)
-                if self.exampleView_0.moveableContent.superview != self.exampleView_0 {
-                    self.dragger_0.travel(to: .forwards, animated: false)
-                }
-                if self.exampleView_1.moveableContent.superview != self.exampleView_1 {
-                    self.dragger_1.travel(to: .forwards, animated: false)
+                self.updateDragger()
+                
+                if self.exampleView.moveableContent.superview == self.view {
+                    self.dragger.travel(to: .forwards, animated: true)
                 }
             }
         }
     }
     
-    func setup() {
-        exampleView_0.descriptionLabel.text = "Horizontal Window Drag"
-        exampleView_0.animateButton.tag = 0
-        exampleView_0.moveableContent.tag = 0
-        exampleView_0.animateButton.addTarget(self, action: #selector(onClickExpandBtn), for: .touchUpInside)
-        dragger_0 = ViewDragger(animationView: exampleView_0.moveableContent,
-                                backwardsSuperView: exampleView_0,
-                                forwardSuperView: view.window!,
-                                backwardsViewFrame: frameInExampleContainer,
-                                forwardsViewFrame: view.window!.bounds,
-                                gestureAxis: .horizontal)
-        dragger_0.delegate = self
+    func updateDragger() {
+        let isfree = dragSyleSegmentControl.selectedSegmentIndex == 1
+        let animationType: AnimationType = animationTypeSegmentControl.selectedSegmentIndex == 0 ? .frame : .tranform
+        let gestureAxis: GestureAxis = gestureAxisSegmentControl.selectedSegmentIndex == 0 ? .vertical : .horizontal
         
-        exampleView_1.descriptionLabel.text = "Vertical Window Drag"
-        exampleView_1.animateButton.tag = 1
-        exampleView_1.moveableContent.tag = 1
-        exampleView_1.animateButton.addTarget(self, action: #selector(onClickExpandBtn), for: .touchUpInside)
-        dragger_1 = ViewDragger(animationView: exampleView_1.moveableContent,
-                                backwardsSuperView: exampleView_1,
-                                forwardSuperView: view.window!,
-                                backwardsViewFrame: frameInExampleContainer,
-                                forwardsViewFrame: view.window!.bounds,
-                                gestureAxis: .vertical)
-        dragger_1.delegate = self
+        if isfree {
+            dragger.updateWithFreeDrag(targetDraggingView: view)
+        } else {
+            dragger.updateTwoViewsDrag(backwardsSuperView: exampleView,
+                                       forwardsSuperView: view,
+                                       targetDraggingView: nil,
+                                       backwardsViewFrame: frameInExampleContainer,
+                                       forwardsViewFrame: view.bounds,
+                                       gestureAxis: gestureAxis,
+                                       animationType: animationType)
+        }
+    }
+    
+    func setup() {
+        exampleView.descriptionLabel.text = "Drag Me"
+        exampleView.animateButton.tag = 0
+        exampleView.moveableContent.tag = 0
+        exampleView.animateButton.addTarget(self, action: #selector(onClickExpandBtn), for: .touchUpInside)
+        dragger = ViewDragger(animationView: exampleView.moveableContent, targetDraggingView: view)
+        dragger.delegate = self
+        updateDragger()
     }
     
     @objc func onClickExpandBtn(_ sender: UIButton) {
-        let dragger = draggerFor(animateButton: sender)
-        let container = containerFor(button: sender)
-        if container?.moveableContent.superview == container {
+        if exampleView.moveableContent.superview == exampleView {
             dragger.travel(to: .forwards)
         } else {
             dragger.travel(to: .backwards)
         }
     }
-
-    @IBOutlet weak var exampleView_1: ExampleContainer!
-    @IBOutlet weak var exampleView_0: ExampleContainer!
     
-    var dragger_1: ViewDragger!
-    var dragger_0: ViewDragger!
-    
-    func containerFor(button: UIButton) -> ExampleContainer? {
-        switch button.tag {
-        case 0: return exampleView_0
-        default: return exampleView_1
-        }
-    }
-    
-    func containerFor(animationView: UIView) -> ExampleContainer? {
-        switch animationView.tag {
-        case 0: return exampleView_0
-        default: return exampleView_1
-        }
-    }
-    
-    func draggerFor(animateButton: UIButton) -> ViewDragger {
-        switch animateButton.tag {
-        case 0: return dragger_0
-        default: return dragger_1
-        }
+    @IBAction func segmentUpdated(_ sender: UISegmentedControl) {
+        updateDragger()
     }
 }
 
 extension ViewController: ViewDraggerDelegate {
-    func travelAnimationDidStartWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState) {
+    func travelAnimationStartFreeDragging(travelAnimation: ViewDragger, view: UIView) {}
+    
+    func travelAnimationFreeDraggingUpdate(travelAnimation: ViewDragger, view: UIView) {}
+    
+    func travelAnimationCancelFreeDragging(travelAnimation: ViewDragger, view: UIView) {}
+    
+    func travelAnimationEndFreeDragging(travelAnimation: ViewDragger, view: UIView, velocity: CGPoint) {}
+    
+    func travelAnimationDidRecoverWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState) {}
+    
+    func travelAnimationDidUpdateProgress(travelAnimation: ViewDragger, view: UIView, travelState: TravelState, progress: CGFloat) {}
+    
+    func travelAnimationDidStartWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState) {
         switch travelState {
         case .backwards:
-            containerFor(animationView: view)?.updateAnimateButton(expand: true)
+            exampleView.updateAnimateButton(expand: true)
         case .forwards:
-            containerFor(animationView: view)?.updateAnimateButton(expand: false)
+            exampleView.updateAnimateButton(expand: false)
         }
     }
     
-    func travelAnimationDidCancelWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState) {
+    func travelAnimationDidCancelWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState) {
         switch travelState {
         case .backwards:
-            containerFor(animationView: view)?.updateAnimateButton(expand: false)
+            exampleView.updateAnimateButton(expand: false)
         case .forwards:
-            containerFor(animationView: view)?.updateAnimateButton(expand: true)
+            exampleView.updateAnimateButton(expand: true)
         }
     }
     
-    func travelAnimationDidCompleteWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState) {
-    }
+    func travelAnimationDidCompleteWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState) {}
 }

@@ -9,25 +9,29 @@
 /* Begin PBXBuildFile section */
 		0052C70B1677D3E9AA8E11F583B5D68A /* Pods-ViewDragger_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 092237AFE808056B1C44585079F40254 /* Pods-ViewDragger_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5CB7D41B4A9CE2D0EE4A90187E2D2 /* Pods-ViewDragger_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF14C1A51325479791413EE9FBFBA92E /* Pods-ViewDragger_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		52535047B1A9240273790A817AFEF908 /* ViewDragger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B27D26FAC474319072C2E407A7748 /* ViewDragger.swift */; };
-		5384D9992EA3FA44D70421B010640612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		5425C8781D29A900E349D967D1F1924D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B2A7729EA99DBF0352371E07804320 /* Utility.swift */; };
 		54D911B0F78DE9049296C8DBDCDCD176 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		6C9029548BAE0FA5C535431BC56307A2 /* ViewDragger-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F28DE6B2C32D6EA9874BD04EEA064B /* ViewDragger-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7AA5767B80F3213D3BF436FA52A8DDD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		80E685F007A1B3460C6D02D0F7EE6D08 /* ViewDragger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE21FF3E5583A51C82F7424A70CB5D89 /* ViewDragger-dummy.m */; };
+		8AEA4B7D29ADF3FD00AA0CD5 /* DraggerGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA4B7C29ADF3FD00AA0CD5 /* DraggerGestureHandler.swift */; };
+		8AEA4B7F29AE004600AA0CD5 /* TwoViewDraggerGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA4B7E29AE004600AA0CD5 /* TwoViewDraggerGestureHandler.swift */; };
+		8AEA4B8129AE007500AA0CD5 /* FreeViewDraggerGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA4B8029AE007500AA0CD5 /* FreeViewDraggerGestureHandler.swift */; };
 		91C731F4F906460EE87AD8D147AFCE14 /* Pods-ViewDragger_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B25D580CF28F99EFE6B831605D457D75 /* Pods-ViewDragger_Example-dummy.m */; };
-		92CD7FB24A8B41F60DDC7EB4F16F92AA /* ViewDragger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AABDD0CFE8F8BB100A9242CFD9EAB615 /* ViewDragger-dummy.m */; };
+		A28C581787F0E8D7CEC995781D1E70D3 /* ViewDragger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D6A169A06CE9E4CA30981421B3FAB9 /* ViewDragger.swift */; };
+		B534D8B1CDE5E6475FA34DE01E212271 /* ViewDragger-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F329F305FCC4086C66E1903828CBB6D9 /* ViewDragger-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4C0D3026D595B6751B4C1FDEB702F40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		ECE8EC5A056C1EFE5154FF24610065BA /* Pods-ViewDragger_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11402AD909E7BB28D48F4FE7B441536A /* Pods-ViewDragger_Tests-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AF4795E9A53A1A18C23D35449CD113C7 /* PBXContainerItemProxy */ = {
+		398C24965580BEEE3168B5D6239A878B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E1A87090D89DBA9F1584C033A25C4CFD;
 			remoteInfo = "Pods-ViewDragger_Example";
 		};
-		C0AC4B83DCD1BF52BDA3170A7FBFDBE6 /* PBXContainerItemProxy */ = {
+		58A9EBF198754E194F056AF60C31AAED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -37,39 +41,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07F28DE6B2C32D6EA9874BD04EEA064B /* ViewDragger-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewDragger-umbrella.h"; sourceTree = "<group>"; };
 		092237AFE808056B1C44585079F40254 /* Pods-ViewDragger_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ViewDragger_Tests-umbrella.h"; sourceTree = "<group>"; };
 		11402AD909E7BB28D48F4FE7B441536A /* Pods-ViewDragger_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ViewDragger_Tests-dummy.m"; sourceTree = "<group>"; };
-		1684B3D7F5863BBFC0D47BFDE938B533 /* ViewDragger.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ViewDragger.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1DB10A4496622052BCB14D8DF438217E /* Pods-ViewDragger_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ViewDragger_Example-frameworks.sh"; sourceTree = "<group>"; };
+		23D6A169A06CE9E4CA30981421B3FAB9 /* ViewDragger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewDragger.swift; path = ViewDragger/Classes/ViewDragger.swift; sourceTree = "<group>"; };
+		25449D772E3BC177015DF5BAC89D53E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		279A45AAFF631431B64E2CA86F2008C1 /* Pods-ViewDragger_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ViewDragger_Example-Info.plist"; sourceTree = "<group>"; };
 		29D132F1CC0F3D95E6BB9440B0A85BAD /* Pods-ViewDragger_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ViewDragger_Tests-Info.plist"; sourceTree = "<group>"; };
-		3037172CA3868E892585E908ED3ED245 /* ViewDragger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewDragger.release.xcconfig; sourceTree = "<group>"; };
 		30FE1BD85FBC3509CFA3D1795FA03AC6 /* Pods-ViewDragger_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ViewDragger_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		3C618849E74767A12567C88D13C9EC45 /* ViewDragger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewDragger.debug.xcconfig; sourceTree = "<group>"; };
+		40C500BCF69425F513C6F8F38A959D5D /* ViewDragger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ViewDragger.modulemap; sourceTree = "<group>"; };
 		4589263BA9D0ACFCB99B94285194DDC6 /* Pods-ViewDragger_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ViewDragger_Example.modulemap"; sourceTree = "<group>"; };
-		57D2E0E95A4B09AB825A560A3E73D0F9 /* ViewDragger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ViewDragger.modulemap; sourceTree = "<group>"; };
-		615F825EF99C004E0B721AAD3261F974 /* ViewDragger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewDragger-prefix.pch"; sourceTree = "<group>"; };
+		47D5C0095199B848D2FF6CB0331D6A6F /* ViewDragger-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ViewDragger-Info.plist"; sourceTree = "<group>"; };
+		612A8F85A1698D4B9C6EEF05236BD34C /* ViewDragger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewDragger.release.xcconfig; sourceTree = "<group>"; };
 		65ACAB8FA6801D313F3B255F5BBCC3BA /* Pods-ViewDragger_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ViewDragger_Tests.modulemap"; sourceTree = "<group>"; };
 		6DE469E00396E8630FBBC9836492C05C /* Pods-ViewDragger_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ViewDragger_Example"; path = Pods_ViewDragger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		74AC62F55D4FF1EE53EAF96BD1A492DA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		74F70E0334CBE2F4A72A39CAE9402677 /* Pods-ViewDragger_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ViewDragger_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7ADB3BD3816F0AFCC9D9499BD36237D3 /* Pods-ViewDragger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ViewDragger_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7D9D5DD8B67CF76AD806BB865B65E33E /* ViewDragger.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ViewDragger.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8832EB9F1B47155E7E43BD2352834966 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		89B2A7729EA99DBF0352371E07804320 /* Utility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = ViewDragger/Classes/Utility.swift; sourceTree = "<group>"; };
+		8AEA4B7C29ADF3FD00AA0CD5 /* DraggerGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DraggerGestureHandler.swift; path = ViewDragger/Classes/DraggerGestureHandler.swift; sourceTree = "<group>"; };
+		8AEA4B7E29AE004600AA0CD5 /* TwoViewDraggerGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TwoViewDraggerGestureHandler.swift; path = ViewDragger/Classes/TwoViewDraggerGestureHandler.swift; sourceTree = "<group>"; };
+		8AEA4B8029AE007500AA0CD5 /* FreeViewDraggerGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FreeViewDraggerGestureHandler.swift; path = ViewDragger/Classes/FreeViewDraggerGestureHandler.swift; sourceTree = "<group>"; };
+		9599800E6F236D73BB6A76AC5562A208 /* ViewDragger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewDragger-prefix.pch"; sourceTree = "<group>"; };
 		98D14BED9BF966D2C00C67BEC3740471 /* Pods-ViewDragger_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ViewDragger_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		990B27D26FAC474319072C2E407A7748 /* ViewDragger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewDragger.swift; path = ViewDragger/Classes/ViewDragger.swift; sourceTree = "<group>"; };
 		99C29574FAF30689B3C83FD252B95AF5 /* Pods-ViewDragger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ViewDragger_Example.release.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A169BA40C0ACD3658F88140ECE04BD79 /* ViewDragger-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ViewDragger-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A80AFDA66E83529ABFACB074F8F7131C /* ViewDragger */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ViewDragger; path = ViewDragger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9300A25655CC5ACFE8A5A87F6D4D8C2 /* ViewDragger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewDragger.debug.xcconfig; sourceTree = "<group>"; };
-		AABDD0CFE8F8BB100A9242CFD9EAB615 /* ViewDragger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ViewDragger-dummy.m"; sourceTree = "<group>"; };
 		B25D580CF28F99EFE6B831605D457D75 /* Pods-ViewDragger_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ViewDragger_Example-dummy.m"; sourceTree = "<group>"; };
 		B9FA491ACAF15620506385BE15B353CB /* Pods-ViewDragger_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ViewDragger_Tests"; path = Pods_ViewDragger_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0BF29CE52057CE96206F65068BDECAF /* Pods-ViewDragger_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ViewDragger_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CF14C1A51325479791413EE9FBFBA92E /* Pods-ViewDragger_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ViewDragger_Example-umbrella.h"; sourceTree = "<group>"; };
-		D8900DF6237D026A41457B81513C89FD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		DC7E9D58F43E46FB41D40290BC42F3D7 /* Pods-ViewDragger_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ViewDragger_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E47350BC55E3193E27420A0252C381C4 /* Pods-ViewDragger_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ViewDragger_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		F329F305FCC4086C66E1903828CBB6D9 /* ViewDragger-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewDragger-umbrella.h"; sourceTree = "<group>"; };
+		FE21FF3E5583A51C82F7424A70CB5D89 /* ViewDragger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ViewDragger-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +89,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88E943CE77BB87EFE14017EBB0F46E49 /* Frameworks */ = {
+		66D2B3FFAE0DEBFE27A96DF3D22A55A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5384D9992EA3FA44D70421B010640612 /* Foundation.framework in Frameworks */,
+				D4C0D3026D595B6751B4C1FDEB702F40 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,21 +134,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		489C539966BE11243CE0E3C27B481D9D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				57D2E0E95A4B09AB825A560A3E73D0F9 /* ViewDragger.modulemap */,
-				AABDD0CFE8F8BB100A9242CFD9EAB615 /* ViewDragger-dummy.m */,
-				A169BA40C0ACD3658F88140ECE04BD79 /* ViewDragger-Info.plist */,
-				615F825EF99C004E0B721AAD3261F974 /* ViewDragger-prefix.pch */,
-				07F28DE6B2C32D6EA9874BD04EEA064B /* ViewDragger-umbrella.h */,
-				A9300A25655CC5ACFE8A5A87F6D4D8C2 /* ViewDragger.debug.xcconfig */,
-				3037172CA3868E892585E908ED3ED245 /* ViewDragger.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/ViewDragger";
-			sourceTree = "<group>";
-		};
 		4B5C5023F17561B853B2AEB6A7DCA724 /* Pods-ViewDragger_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +151,21 @@
 			path = "Target Support Files/Pods-ViewDragger_Example";
 			sourceTree = "<group>";
 		};
+		4DB44DFF3971C078484FF32AEB560E4E /* ViewDragger */ = {
+			isa = PBXGroup;
+			children = (
+				89B2A7729EA99DBF0352371E07804320 /* Utility.swift */,
+				23D6A169A06CE9E4CA30981421B3FAB9 /* ViewDragger.swift */,
+				8AEA4B7C29ADF3FD00AA0CD5 /* DraggerGestureHandler.swift */,
+				8AEA4B8029AE007500AA0CD5 /* FreeViewDraggerGestureHandler.swift */,
+				8AEA4B7E29AE004600AA0CD5 /* TwoViewDraggerGestureHandler.swift */,
+				71FADDB7BDAA8796D279C8EC437B981C /* Pod */,
+				6FC3B84898111AC1696DE1E0A9D78916 /* Support Files */,
+			);
+			name = ViewDragger;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,12 +174,27 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		BE5BD9F2CB36EF7C958C8949E4C170E3 /* Pod */ = {
+		6FC3B84898111AC1696DE1E0A9D78916 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				74AC62F55D4FF1EE53EAF96BD1A492DA /* LICENSE */,
-				D8900DF6237D026A41457B81513C89FD /* README.md */,
-				1684B3D7F5863BBFC0D47BFDE938B533 /* ViewDragger.podspec */,
+				40C500BCF69425F513C6F8F38A959D5D /* ViewDragger.modulemap */,
+				FE21FF3E5583A51C82F7424A70CB5D89 /* ViewDragger-dummy.m */,
+				47D5C0095199B848D2FF6CB0331D6A6F /* ViewDragger-Info.plist */,
+				9599800E6F236D73BB6A76AC5562A208 /* ViewDragger-prefix.pch */,
+				F329F305FCC4086C66E1903828CBB6D9 /* ViewDragger-umbrella.h */,
+				3C618849E74767A12567C88D13C9EC45 /* ViewDragger.debug.xcconfig */,
+				612A8F85A1698D4B9C6EEF05236BD34C /* ViewDragger.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ViewDragger";
+			sourceTree = "<group>";
+		};
+		71FADDB7BDAA8796D279C8EC437B981C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				25449D772E3BC177015DF5BAC89D53E6 /* LICENSE */,
+				8832EB9F1B47155E7E43BD2352834966 /* README.md */,
+				7D9D5DD8B67CF76AD806BB865B65E33E /* ViewDragger.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -180,19 +203,11 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D0B3B40E69B668B326080D5F95DCEAD6 /* Development Pods */,
+				DA5100DDFB47022A202FE60DCB2717CE /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				48499B9CFD5DF55E7B4E2712C4141D2D /* Products */,
 				D5C0F9C6FC0106C2D2E7E711692C324E /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D0B3B40E69B668B326080D5F95DCEAD6 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FA098185ECED8DD9B312277AFF717BE4 /* ViewDragger */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -212,15 +227,12 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FA098185ECED8DD9B312277AFF717BE4 /* ViewDragger */ = {
+		DA5100DDFB47022A202FE60DCB2717CE /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				990B27D26FAC474319072C2E407A7748 /* ViewDragger.swift */,
-				BE5BD9F2CB36EF7C958C8949E4C170E3 /* Pod */,
-				489C539966BE11243CE0E3C27B481D9D /* Support Files */,
+				4DB44DFF3971C078484FF32AEB560E4E /* ViewDragger */,
 			);
-			name = ViewDragger;
-			path = ../..;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,11 +254,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5DD3FF8CBA9DDB0CB67A1B2288C0030 /* Headers */ = {
+		38365029DE31FF2E61A3F007F068EA54 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C9029548BAE0FA5C535431BC56307A2 /* ViewDragger-umbrella.h in Headers */,
+				B534D8B1CDE5E6475FA34DE01E212271 /* ViewDragger-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +277,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A7E49BF6CD266E7A6C129BF1C45E0462 /* PBXTargetDependency */,
+				13ECDEC90B676C8D9DB4525DB87E3E94 /* PBXTargetDependency */,
 			);
 			name = "Pods-ViewDragger_Tests";
 			productName = Pods_ViewDragger_Tests;
@@ -274,12 +286,12 @@
 		};
 		BAF6DADC474281CD08131F8774668CE3 /* ViewDragger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7D80B5D15D1140DA160126A3C3A1A22 /* Build configuration list for PBXNativeTarget "ViewDragger" */;
+			buildConfigurationList = 4A1F49B786C46B0FEF85059F7F44498A /* Build configuration list for PBXNativeTarget "ViewDragger" */;
 			buildPhases = (
-				E5DD3FF8CBA9DDB0CB67A1B2288C0030 /* Headers */,
-				C9B794E7D4C2F7E2034FDD4B118099F7 /* Sources */,
-				88E943CE77BB87EFE14017EBB0F46E49 /* Frameworks */,
-				409BE90C1E9110BCD2248B0D8A9EAC05 /* Resources */,
+				38365029DE31FF2E61A3F007F068EA54 /* Headers */,
+				E4A2A59D59157E9ADC2F6E802BED8372 /* Sources */,
+				66D2B3FFAE0DEBFE27A96DF3D22A55A7 /* Frameworks */,
+				DEC8572277F99A36F8237A2C4A03E8E0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -302,7 +314,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6D979A141844AAEB33E4C5572CFFC244 /* PBXTargetDependency */,
+				227EE0AA712E065BB1C7BCC0C149B215 /* PBXTargetDependency */,
 			);
 			name = "Pods-ViewDragger_Example";
 			productName = Pods_ViewDragger_Example;
@@ -339,13 +351,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		409BE90C1E9110BCD2248B0D8A9EAC05 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		718D1346982F03C2A14AAA82ABCED5E7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,6 +359,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7ECADF13E50308D4449067056257FBB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEC8572277F99A36F8237A2C4A03E8E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -371,12 +383,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9B794E7D4C2F7E2034FDD4B118099F7 /* Sources */ = {
+		E4A2A59D59157E9ADC2F6E802BED8372 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52535047B1A9240273790A817AFEF908 /* ViewDragger.swift in Sources */,
-				92CD7FB24A8B41F60DDC7EB4F16F92AA /* ViewDragger-dummy.m in Sources */,
+				5425C8781D29A900E349D967D1F1924D /* Utility.swift in Sources */,
+				8AEA4B8129AE007500AA0CD5 /* FreeViewDraggerGestureHandler.swift in Sources */,
+				8AEA4B7F29AE004600AA0CD5 /* TwoViewDraggerGestureHandler.swift in Sources */,
+				A28C581787F0E8D7CEC995781D1E70D3 /* ViewDragger.swift in Sources */,
+				80E685F007A1B3460C6D02D0F7EE6D08 /* ViewDragger-dummy.m in Sources */,
+				8AEA4B7D29ADF3FD00AA0CD5 /* DraggerGestureHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,17 +407,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6D979A141844AAEB33E4C5572CFFC244 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ViewDragger;
-			target = BAF6DADC474281CD08131F8774668CE3 /* ViewDragger */;
-			targetProxy = C0AC4B83DCD1BF52BDA3170A7FBFDBE6 /* PBXContainerItemProxy */;
-		};
-		A7E49BF6CD266E7A6C129BF1C45E0462 /* PBXTargetDependency */ = {
+		13ECDEC90B676C8D9DB4525DB87E3E94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-ViewDragger_Example";
 			target = E1A87090D89DBA9F1584C033A25C4CFD /* Pods-ViewDragger_Example */;
-			targetProxy = AF4795E9A53A1A18C23D35449CD113C7 /* PBXContainerItemProxy */;
+			targetProxy = 398C24965580BEEE3168B5D6239A878B /* PBXContainerItemProxy */;
+		};
+		227EE0AA712E065BB1C7BCC0C149B215 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ViewDragger;
+			target = BAF6DADC474281CD08131F8774668CE3 /* ViewDragger */;
+			targetProxy = 58A9EBF198754E194F056AF60C31AAED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -438,6 +454,69 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		103B0B93966796E836149F4991D21621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C618849E74767A12567C88D13C9EC45 /* ViewDragger.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ViewDragger/ViewDragger-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ViewDragger/ViewDragger-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ViewDragger/ViewDragger.modulemap";
+				PRODUCT_MODULE_NAME = ViewDragger;
+				PRODUCT_NAME = ViewDragger;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59AFFD377C29A1BBEDBF2F25CA73CA0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 612A8F85A1698D4B9C6EEF05236BD34C /* ViewDragger.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ViewDragger/ViewDragger-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ViewDragger/ViewDragger-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ViewDragger/ViewDragger.modulemap";
+				PRODUCT_MODULE_NAME = ViewDragger;
+				PRODUCT_NAME = ViewDragger;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -494,42 +573,9 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		8AC9EB67136BCA2CB123171EDDB810AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3037172CA3868E892585E908ED3ED245 /* ViewDragger.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ViewDragger/ViewDragger-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ViewDragger/ViewDragger-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ViewDragger/ViewDragger.modulemap";
-				PRODUCT_MODULE_NAME = ViewDragger;
-				PRODUCT_NAME = ViewDragger;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -633,37 +679,6 @@
 			};
 			name = Debug;
 		};
-		E52DC00D79A8DB4BEF014C8D4B91957B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9300A25655CC5ACFE8A5A87F6D4D8C2 /* ViewDragger.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ViewDragger/ViewDragger-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ViewDragger/ViewDragger-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ViewDragger/ViewDragger.modulemap";
-				PRODUCT_MODULE_NAME = ViewDragger;
-				PRODUCT_NAME = ViewDragger;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		F6438C8061E6169BCD5050158310554B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 99C29574FAF30689B3C83FD252B95AF5 /* Pods-ViewDragger_Example.release.xcconfig */;
@@ -743,20 +758,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4A1F49B786C46B0FEF85059F7F44498A /* Build configuration list for PBXNativeTarget "ViewDragger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				103B0B93966796E836149F4991D21621 /* Debug */,
+				59AFFD377C29A1BBEDBF2F25CA73CA0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5FA7CD46FAD5E803F1A7004162FAD51F /* Build configuration list for PBXNativeTarget "Pods-ViewDragger_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD8CB60EA0EE92697B8EBE19192E67B4 /* Debug */,
 				F6438C8061E6169BCD5050158310554B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7D80B5D15D1140DA160126A3C3A1A22 /* Build configuration list for PBXNativeTarget "ViewDragger" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E52DC00D79A8DB4BEF014C8D4B91957B /* Debug */,
-				8AC9EB67136BCA2CB123171EDDB810AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
