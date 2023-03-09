@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ViewDragger'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'A tiny tool to provide draggable function to any UIView.'
 
   s.description      = <<-DESC

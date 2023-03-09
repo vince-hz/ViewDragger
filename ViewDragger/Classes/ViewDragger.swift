@@ -1,6 +1,6 @@
 //
 //  ViewTravelAnimation.swift
-//  TransitionTest
+//  ViewTravelAnimation
 //
 //  Created by xuyunshi on 2023/2/17.
 //
@@ -8,260 +8,216 @@
 import UIKit
 
 public protocol ViewDraggerDelegate: AnyObject {
-    func travelAnimationDidStartWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState)
+    func travelAnimationDidStartWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState)
+
+    func travelAnimationDidRecoverWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState)
+
+    func travelAnimationDidUpdateProgress(travelAnimation: ViewDragger, view: UIView, travelState: TravelState, progress: CGFloat)
+
+    func travelAnimationDidCancelWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState)
+
+    func travelAnimationDidCompleteWith(travelAnimation: ViewDragger, view: UIView, travelState: TravelState)
     
-    func travelAnimationDidCancelWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState)
+    func travelAnimationStartFreeDragging(travelAnimation: ViewDragger, view: UIView)
     
-    func travelAnimationDidCompleteWith(travelAnimation: ViewDragger, view: UIView, travelState: ViewDragger.TravelState)
+    func travelAnimationFreeDraggingUpdate(travelAnimation: ViewDragger, view: UIView)
+    
+    func travelAnimationCancelFreeDragging(travelAnimation: ViewDragger, view: UIView)
+    
+    func travelAnimationEndFreeDragging(travelAnimation: ViewDragger, view: UIView, velocity: CGPoint)
+}
+
+public enum AnimationType {
+    /// Using `CGAffineTransform`
+    case tranform
+    /// Using `UIView.frame`
+    case frame
+}
+
+/// The travel animation direction.
+public enum TravelState {
+    /// Indicate animation from forwardsSuperView to backwardsSuperView.
+    case backwards
+    /// Indicate animation from backwardsSuperView to forwardsSuperView.
+    case forwards
+}
+
+public enum GestureAxis {
+    case horizontal
+    case vertical
 }
 
 public class ViewDragger {
-    /// The travel animation direction.
-    public enum TravelState {
-        /// Indicate animation from forwardsSuperView to backwardsSuperView.
-        case backwards
-        /// Indicate animation from backwardsSuperView to forwardsSuperView.
-        case forwards
-    }
-
-    public enum GestureAxis {
-        case horizontal
-        case vertical
-    }
-    
     // MARK: - Public
-    
-    /// Indicate the gesture ended velocity effect on animation.
-    /// The smaller this is, the more likely it is that the completion animation will be triggered.
-    public var velocityTriggerNum = CGFloat(200)
-    
-    /// Indicate whether the gesture offset position is sufficient to trigger the end animation when the gesture ends.
-    /// The value is between 0-1.
-    public var tranlationTriggerPercentNum = CGFloat(0.166666)
-    
+
     public weak var delegate: ViewDraggerDelegate?
-    
+
+    public let panGesture = UIPanGestureRecognizer()
+
+    /// Only enabled when backwardsSuperView and forwardsSuperView was set.
     /// Manually triggered animations.
+    /// Only enabled when forwardsView did set.
     public func travel(to travelState: TravelState, animated: Bool = true) {
-        prepareAnimatorFor(travelState)
-        if animated {
-            animator.startAnimation()
-        } else {
-            animator.fractionComplete = 1
-            animator.stopAnimation(false)
-            animator.finishAnimation(at: .end)
+        if let twoViewDragHandler = dragHandler as? TwoViewDraggerGestureHandler {
+            twoViewDragHandler.travel(to: travelState, animated: animated)
         }
     }
-    
-    public func update(backwardsViewFrame: CGRect? = nil,
-                       forwardsViewFrame: CGRect? = nil,
-                       gestureAxis: GestureAxis? = nil) {
-        if let backwardsViewFrame { self.backwardsViewFrame = backwardsViewFrame }
-        if let forwardsViewFrame { self.forwardsViewFrame = forwardsViewFrame }
-        if let gestureAxis { self.gestureAxis = gestureAxis }
-    }
-    
-    fileprivate(set) weak var animationView: UIView?
-    fileprivate(set) weak var backwardsSuperView: UIView?
-    fileprivate(set) weak var forwardsSuperView: UIView?
-    fileprivate var backwardsViewFrame: CGRect
-    fileprivate var forwardsViewFrame: CGRect
-    fileprivate var gestureAxis: GestureAxis
 
-    fileprivate var travelUnit: CGFloat = .infinity
-    fileprivate var lastPanPosition: CGFloat = 0
-    fileprivate var travelState = TravelState.forwards
-    
-    fileprivate lazy var animator = UIViewPropertyAnimator()
-    
-    
-    /// Init
-    /// - Parameters:
-    ///   - animationView: which want to perform animation.
-    ///   - backwardsSuperView: backwards animationView's superView.
-    ///   - forwardSuperView: forwards animationView's superView.
-    ///   - backwardsViewFrame: animationView frame in backwardsSuperView.
-    ///   - forwardsViewFrame: animationView frame in forwardsSuperView.
-    ///   - gestureAxis: indicate the panGesture's animation axis.
-    public init(
-        animationView: UIView,
-        backwardsSuperView: UIView,
-        forwardSuperView: UIView,
-        backwardsViewFrame: CGRect,
-        forwardsViewFrame: CGRect,
-        gestureAxis: GestureAxis
-    ) {
-        self.animationView = animationView
+    public func updateWithFreeDrag(targetDraggingView: UIView,
+                                   animationType: AnimationType? = nil)
+    {
+        if let animationType {
+            self.animationType = animationType
+        }
+        forwardsSuperView = nil
+        self.targetDraggingView = targetDraggingView
+        dragHandler = createSuitableDraggerHandler()
+    }
+
+    public func updateTwoViewsDrag(backwardsSuperView: UIView,
+                                   forwardsSuperView: UIView,
+                                   targetDraggingView: UIView?,
+                                   backwardsViewFrame: CGRect,
+                                   forwardsViewFrame: CGRect,
+                                   gestureAxis: GestureAxis,
+                                   animationType: AnimationType? = nil,
+                                   animatorDuration: TimeInterval? = nil)
+    {
+        if let animationType {
+            self.animationType = animationType
+        }
+        if let animatorDuration {
+            self.animatorDuration = animatorDuration
+        }
         self.backwardsSuperView = backwardsSuperView
-        self.forwardsSuperView = forwardSuperView
+        self.forwardsSuperView = forwardsSuperView
+        self.targetDraggingView = targetDraggingView
         self.backwardsViewFrame = backwardsViewFrame
         self.forwardsViewFrame = forwardsViewFrame
         self.gestureAxis = gestureAxis
-        self.setup()
+        
+        dragHandler = createSuitableDraggerHandler()
     }
-    
-    deinit {
-        animator.stopAnimation(false)
-        animator.finishAnimation(at: .end)
-    }
-    
-    @objc fileprivate func onPan(_ gesture: UIPanGestureRecognizer) {
-        let position: CGFloat
-        switch gestureAxis {
-        case .horizontal:
-            position = gesture.translation(in: animationView).x
-        case .vertical:
-            position = gesture.translation(in: animationView).y
-        }
-        switch gesture.state {
-        case .began:
-            lastPanPosition = position
-            if animator.isRunning {
-                animator.pauseAnimation()
-            } else {
-                travelState = animationView?.superview === backwardsSuperView ? .forwards : .backwards
-                prepareAnimatorFor(travelState)
-            }
-        case .changed:
-            let delta = (position - lastPanPosition) / travelUnit
-            animator.fractionComplete += delta
-            lastPanPosition = position
-        case .cancelled:
-            cancelAnimation()
-        case .ended:
-            let velocity: CGFloat
-            switch gestureAxis {
-            case .horizontal:
-                velocity = gesture.velocity(in: animationView).x
-            case .vertical:
-                velocity = gesture.velocity(in: animationView).y
-            }
-            // Velocity first
-            if travelUnit > 0 {
-                if velocity >= velocityTriggerNum {
-                    finishAnimation()
-                    return
-                }
-                if velocity <= -velocityTriggerNum {
-                    cancelAnimation()
-                    return
-                }
-            }
-            if travelUnit < 0 {
-                if velocity <= -velocityTriggerNum {
-                    finishAnimation()
-                    return
-                }
-                if velocity >= velocityTriggerNum {
-                    cancelAnimation()
-                    return
-                }
-            }
-            if animator.fractionComplete >= tranlationTriggerPercentNum {
-                finishAnimation()
-                return
-            }
-            cancelAnimation()
-        default:
-            cancelAnimation()
-        }
-    }
-    
-    fileprivate func prepareAnimatorFor(_ travelState: TravelState) {
-        guard
-            let backwardsSuperView,
-            let forwardsSuperView,
-            let animationView,
-            let window = animationView.window
-        else { return }
-        animator.isReversed = false
-        delegate?.travelAnimationDidStartWith(travelAnimation: self, view: animationView, travelState: travelState)
-        // Calc center translate
-        switch gestureAxis {
-        case .horizontal:
-            let forwardsXInWindow = forwardsSuperView.convert(CGPoint(x: forwardsViewFrame.origin.x + forwardsViewFrame.width / 2,
-                                                                      y: 0),
-                                                              to: window).x
-            let backwardsXInWindow = backwardsSuperView.convert(CGPoint(x: backwardsViewFrame.origin.x + backwardsViewFrame.width / 2,
-                                                                        y: 0),
-                                                                to: window).x
-            switch travelState {
-            case .backwards:
-                travelUnit = backwardsXInWindow - forwardsXInWindow
-            case .forwards:
-                travelUnit = forwardsXInWindow - backwardsXInWindow
-            }
-        case .vertical:
-            let forwardsYInWindow = forwardsSuperView.convert(CGPoint(x: 0,
-                                                                      y: forwardsViewFrame.origin.y + forwardsViewFrame.height / 2),
-                                                              to: window).y
-            let backwardsYInWindow = backwardsSuperView.convert(CGPoint(x: 0,
-                                                                        y: backwardsViewFrame.origin.y + backwardsViewFrame.height / 2),
-                                                                to: window).y
-            switch travelState {
-            case .backwards:
-                travelUnit = backwardsYInWindow - forwardsYInWindow
-            case .forwards:
-                travelUnit = forwardsYInWindow - backwardsYInWindow
-            }
-        }
-        // Calc frametranlate
-        switch travelState {
-        case .backwards:
-            window.addSubview(animationView)
-            animationView.frame = forwardsSuperView.convert(forwardsViewFrame, to: window)
-            let to = backwardsSuperView.convert(backwardsViewFrame, to: window)
-            animator.addAnimations { animationView.frame = to }
-        case .forwards:
-            window.addSubview(animationView)
-            animationView.frame = backwardsSuperView.convert(backwardsViewFrame, to: window)
-            let toFrameInWindow = forwardsSuperView.convert(forwardsViewFrame, to: window)
-            animator.addAnimations { animationView.frame = toFrameInWindow }
-        }
-        animator.addCompletion { [weak self] position in
-            guard let self, let t = self.forwardsSuperView, let f = self.backwardsSuperView, let v = self.animationView
-            else { return }
-            switch position {
-            case .end:
-                self.delegate?.travelAnimationDidCompleteWith(travelAnimation: self, view: v, travelState: travelState)
-                switch travelState {
-                case .backwards:
-                    f.addSubview(v)
-                    v.frame = self.backwardsViewFrame
-                case .forwards:
-                    t.addSubview(v)
-                    v.frame = self.forwardsViewFrame
-                }
-            case .start:
-                self.delegate?.travelAnimationDidCancelWith(travelAnimation: self, view: v, travelState: travelState)
-                switch travelState {
-                case .backwards:
-                    t.addSubview(v)
-                    v.frame = self.forwardsViewFrame
-                case .forwards:
-                    f.addSubview(v)
-                    v.frame = self.backwardsViewFrame
-                }
-            case .current:
-                return
-            @unknown default:
-                return
+
+    private(set) weak var animationView: UIView!
+    private(set) weak var backwardsSuperView: UIView!
+    private(set) weak var forwardsSuperView: UIView?
+    private(set) weak var targetDraggingView: UIView?
+    private var backwardsViewFrame: CGRect
+    private var forwardsViewFrame: CGRect
+    private var gestureAxis: GestureAxis
+    private var animationType: AnimationType
+    private var animatorDuration: TimeInterval
+
+    private var dragHandler: DraggerGestureHandler? {
+        didSet {
+            if let oldValue {
+                oldValue.destory()
             }
         }
     }
-    
-    fileprivate func finishAnimation() {
-        animator.isReversed = false
-        animator.continueAnimation(withTimingParameters: nil, durationFactor: 1)
+
+    ///  Free Dragging: Have to set targetDraggingView only.
+    ///   - targetDraggingView: specify the common ancestor view instead of fingd by view hierarchy.
+    ///   - animationView: view perform animation.
+    ///   - targetDraggingView: specify the common ancestor view instead of fingd by view hierarchy.
+    ///   - animationType: drag animation type.
+    public convenience init(animationView: UIView,
+                            targetDraggingView: UIView,
+                            animationType: AnimationType = .tranform)
+    {
+        self.init(animationView,
+                  backwardsSuperView: nil,
+                  forwardsSuperView: nil,
+                  targetDraggingView: targetDraggingView,
+                  backwardsViewFrame: .zero,
+                  forwardsViewFrame: .zero,
+                  gestureAxis: .vertical,
+                  animatorDuration: 0,
+                  animationType: animationType)
     }
-    
-    fileprivate func cancelAnimation() {
-        animator.isReversed = true
-        animator.continueAnimation(withTimingParameters: nil, durationFactor: 1)
+
+    ///  Dragging between two views:  Have to set backwardsSuperView, forwardsSuperView and gestureAxis.
+    /// - Parameters:
+    ///   - animationView: view perform animation.
+    ///   - backwardsSuperView: backwards animationView's superView.
+    ///   - forwardSuperView: forwards animationView's superView.
+    ///   - targetDraggingView: specify the common ancestor view instead of fingd by view hierarchy.
+    ///   - backwardsViewFrame: animationView frame in backwardsSuperView.
+    ///   - forwardsViewFrame: animationView frame in forwardsSuperView.
+    ///   - gestureAxis: indicate the panGesture's animation axis.
+    ///   - animatorDuration: total duration of the animation.
+    ///   - animationType: drag animation type.
+    public convenience init(animationView: UIView,
+                            backwardsSuperView: UIView,
+                            forwardsSuperView: UIView,
+                            targetDraggingView: UIView?,
+                            backwardsViewFrame: CGRect,
+                            forwardsViewFrame: CGRect,
+                            gestureAxis: GestureAxis,
+                            animatorDuration: TimeInterval = 0.5,
+                            animationType: AnimationType = .tranform)
+    {
+        self.init(animationView,
+                  backwardsSuperView: backwardsSuperView,
+                  forwardsSuperView: forwardsSuperView,
+                  targetDraggingView: targetDraggingView,
+                  backwardsViewFrame: backwardsViewFrame,
+                  forwardsViewFrame: forwardsViewFrame,
+                  gestureAxis: gestureAxis,
+                  animatorDuration: animatorDuration,
+                  animationType: animationType)
     }
-    
-    fileprivate func setup() {
-        let panGesutre = UIPanGestureRecognizer(target: self, action: #selector(onPan))
-        animationView?.addGestureRecognizer(panGesutre)
+
+    init(_ animationView: UIView,
+         backwardsSuperView: UIView?,
+         forwardsSuperView: UIView?,
+         targetDraggingView: UIView?,
+         backwardsViewFrame: CGRect,
+         forwardsViewFrame: CGRect,
+         gestureAxis: GestureAxis,
+         animatorDuration: TimeInterval,
+         animationType: AnimationType)
+    {
+        self.animationView = animationView
+        self.backwardsSuperView = backwardsSuperView
+        self.forwardsSuperView = forwardsSuperView
+        self.backwardsViewFrame = backwardsViewFrame
+        self.forwardsViewFrame = forwardsViewFrame
+        self.gestureAxis = gestureAxis
+        self.animatorDuration = animatorDuration
+        self.animationType = animationType
+        self.targetDraggingView = targetDraggingView
+
+        dragHandler = createSuitableDraggerHandler()
+
+        // Setup
+        animationView.addGestureRecognizer(panGesture)
+        panGesture.addTarget(self, action: #selector(onPan))
+    }
+
+    func createSuitableDraggerHandler() -> DraggerGestureHandler? {
+        if let forwardsSuperView {
+            return TwoViewDraggerGestureHandler(animationView: animationView,
+                                                backwardsSuperView: backwardsSuperView,
+                                                forwardsSuperView: forwardsSuperView,
+                                                targetDraggingView: targetDraggingView,
+                                                backwardsViewFrame: backwardsViewFrame,
+                                                forwardsViewFrame: forwardsViewFrame,
+                                                gestureAxis: gestureAxis,
+                                                animationType: animationType,
+                                                animator: UIViewPropertyAnimator(duration: animatorDuration, curve: .linear),
+                                                ref: self)
+        } else if let targetDraggingView {
+            return FreeViewDraggerGestureHandler(animationView: animationView,
+                                                 targetDraggingView: targetDraggingView,
+                                                 animationType: animationType,
+                                                 ref: self)
+        }
+        return nil
+    }
+
+    @objc private func onPan(_ gesture: UIPanGestureRecognizer) {
+        dragHandler?.onPan(gesture)
     }
 }
